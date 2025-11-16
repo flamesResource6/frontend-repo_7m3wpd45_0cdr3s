@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Github, Globe } from 'lucide-react'
+import { Github, Globe, Crown, Flame } from 'lucide-react'
 import Hero3D from './components/Hero3D'
 import Dock from './components/Dock'
 import Window from './components/Window'
@@ -28,7 +28,6 @@ function App() {
       const data = await res.json()
       if (data && typeof data.balance === 'number') {
         setCoins(data.balance)
-        // simple confetti-like pulse using CSS class
         const el = document.getElementById('belly-counter')
         if (el) {
           el.classList.add('haki-pulse')
@@ -41,18 +40,24 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen w/full bg-[#0b0b12] text-white">
+    <div className="min-h-screen w/full bg-[#06060a] text-white">
       {/* CRT scanline wrapper */}
       <div className="scanline">
-        {/* Hero con Spline */}
+        {/* Hero con Spline + neon grid */}
         <Hero3D />
 
-        {/* Escritorio */}
-        <section className="relative z-10 mx-auto -mt-24 max-w-6xl rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur-xl">
+        {/* Escritorio mejorado */}
+        <section className="relative z-10 mx-auto -mt-24 max-w-7xl rounded-3xl neon-border glass-card p-6 shadow-2xl">
           <div className="mb-6 flex items-center justify-between">
             <div>
-              <h2 className="text-xl font-semibold text-white/90">Neon Desktop</h2>
-              <p className="text-sm text-white/60">Un mini-OS con estética anime/cyberpunk</p>
+              <div className="inline-flex items-center gap-2 rounded-full border border-fuchsia-400/40 bg-fuchsia-500/10 px-3 py-1 text-xs text-fuchsia-200">
+                <Crown className="h-3.5 w-3.5" />
+                Estado: Super Saiyan UI
+              </div>
+              <h2 className="mt-2 text-xl font-semibold text-white/90">
+                Neon Desktop
+              </h2>
+              <p className="text-sm text-white/60">Mini‑OS anime/cyberpunk con shaders y aura.</p>
             </div>
             <div className="flex items-center gap-3">
               <div id="belly-counter" className="rounded-md border border-white/10 bg-white/10 px-2 py-1 text-sm text-fuchsia-200">
@@ -76,7 +81,7 @@ function App() {
               <button
                 key={card.id}
                 onClick={() => setOpenApp(card.id)}
-                className="group rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5 p-5 text-left transition hover:bg-white/10"
+                className="group rounded-2xl neon-border glass-card p-5 text-left transition hover:-translate-y-0.5"
               >
                 <div className="mb-2 flex items-center gap-2 text-xs text-fuchsia-300">
                   <span className="h-1.5 w-1.5 rounded-full bg-fuchsia-400" />
@@ -85,7 +90,7 @@ function App() {
                 <p className="text-lg font-semibold text-white/90">{card.title}</p>
                 <p className="mt-1 text-sm text-white/70">{card.desc}</p>
                 <div className="mt-4 opacity-0 transition group-hover:opacity-100">
-                  <span className="inline-flex items-center gap-1 text-fuchsia-300">Abrir <Globe className="h-4 w-4" /></span>
+                  <span className="inline-flex items-center gap-1 text-fuchsia-300">Abrir</span>
                 </div>
               </button>
             ))}
@@ -102,7 +107,7 @@ function App() {
           {openApp === 'anime' && (
             <Window title="Centro Otaku" onClose={() => setOpenApp(null)}>
               <div className="space-y-4">
-                <p className="text-white/80">Bienvenido al hub con toques retro-futuristas. Aquí pronto verás widgets de trending, wallpapers y trailers.</p>
+                <p className="text-white/80">Bienvenido al hub con toques retro‑futuristas. Aquí pronto verás widgets de trending, wallpapers y trailers.</p>
                 <ul className="list-disc pl-5 text-white/70">
                   <li>Top openings de la semana</li>
                   <li>Galería de fondos 4K</li>
@@ -113,7 +118,7 @@ function App() {
           )}
 
           {openApp === 'music' && (
-            <Window title="Lo-Fi Radio" onClose={() => setOpenApp(null)}>
+            <Window title="Lo‑Fi Radio" onClose={() => setOpenApp(null)}>
               <div className="space-y-3">
                 <p className="text-white/80">Sintoniza melodías suaves con glow púrpura. (Demo visual)</p>
                 <div className="h-2 w-full overflow-hidden rounded bg-white/10">

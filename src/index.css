@@ -14,6 +14,12 @@
     --font-pixel: 'Press Start 2P', system-ui, monospace;
     --font-os: 'Tahoma', 'MS Sans Serif', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    /* Neon accents */
+    --neon-pink: #ff72b6;
+    --neon-fuchsia: #ff00cc;
+    --neon-purple: #9b5cff;
+    --neon-cyan: #28e7ff;
   }
 
   /* Sakura theme override */
@@ -21,7 +27,7 @@
     --beige-nostalgico: #FFECEB; /* sakura paper */
     --gris-consola: #B8A0A6;     /* sakura shadow */
     --negro-crt: #0B0A0C;        /* deeper ink */
-    --laton-poneglyph: #FF72B6;  /* sakura neon */
+    --laton-poneglyph: var(--neon-pink);
   }
 
   html { font-family: var(--font-sans); font-feature-settings: "rlig" 1, "calt" 1; }
@@ -77,6 +83,37 @@
   background: linear-gradient(rgba(255,255,255,0.02) 50%, rgba(0,0,0,0.02) 50%);
   background-size: 100% 3px; mix-blend-mode: overlay; animation: glow-scanline 4s infinite; border-radius: inherit;
 }
+
+/* Neon grid + bloom */
+.neon-grid {
+  position: relative;
+  background:
+    radial-gradient(1200px 600px at 50% 120%, rgba(155,92,255,0.2), transparent 60%),
+    radial-gradient(1000px 400px at 10% 0%, rgba(255,0,204,0.12), transparent 60%),
+    radial-gradient(1000px 400px at 90% 0%, rgba(40,231,255,0.12), transparent 60%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 40px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 40px);
+}
+.neon-border {
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.08) inset,
+    0 0 24px rgba(255,0,204,0.25),
+    0 0 48px rgba(155,92,255,0.15);
+}
+.glass-card {
+  backdrop-filter: blur(12px) saturate(120%);
+  background: linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.holo-text {
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink), var(--neon-purple));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  text-shadow: 0 0 24px rgba(255,0,204,0.25);
+}
+
+/* Starfield */
+@keyframes twinkle { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
+.starfield span { position:absolute; border-radius:9999px; background: white; opacity:.3; animation: twinkle 3s infinite; }
 
 /* Utility from previous layer for transitions */
 @layer utilities {
