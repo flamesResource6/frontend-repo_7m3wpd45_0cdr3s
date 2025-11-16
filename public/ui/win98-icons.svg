@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="64" viewBox="0 0 256 64" shape-rendering="crispEdges">
+  <defs>
+    <style>
+      .bevel { paint-order: stroke fill markers; }
+    </style>
+  </defs>
+  <!-- Minimize -->
+  <g id="minimize" transform="translate(0,0)">
+    <rect x="8" y="24" width="16" height="8" fill="#C0C0C0" stroke="#808080"/>
+    <rect x="8" y="24" width="16" height="8" fill="none" stroke="#fff" opacity="0.6"/>
+  </g>
+  <!-- Maximize -->
+  <g id="maximize" transform="translate(32,0)">
+    <rect x="8" y="16" width="16" height="16" fill="#C0C0C0" stroke="#808080"/>
+    <rect x="10" y="18" width="12" height="12" fill="none" stroke="#000"/>
+  </g>
+  <!-- Close -->
+  <g id="close" transform="translate(64,0)">
+    <rect x="8" y="16" width="16" height="16" fill="#C0C0C0" stroke="#808080"/>
+    <path d="M11 19l10 10M21 19l-10 10" stroke="#000"/>
+  </g>
+  <!-- Flags -->
+  <g id="flags" transform="translate(96,0)">
+    <rect x="8" y="16" width="16" height="10" fill="#c60b1e"/>
+    <g>
+      <rect x="128" y="16" width="16" height="10" fill="#012169"/>
+      <path d="M128 16l16 10M144 16l-16 10" stroke="#fff" stroke-width="2"/>
+    </g>
+    <rect x="160" y="16" width="16" height="10" fill="#bc002d"/>
+    <rect x="164" y="16" width="8" height="10" fill="#fff"/>
+  </g>
+  <!-- Classic folder -->
+  <g id="folder" transform="translate(192,0)">
+    <path d="M8 22h8l2 4h12v16H8z" fill="#f3d17a" stroke="#9c7a2f"/>
+    <rect x="8" y="30" width="24" height="12" fill="#ffe39b" stroke="#9c7a2f"/>
+  </g>
+</svg>

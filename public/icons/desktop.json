@@ -1,0 +1,27 @@
+{
+  "diario_bitacora": {
+    "name": "Diario de Bitácora",
+    "desc": "Un libro de cuero con la bandera pirata.",
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'><rect x='10' y='8' width='36' height='48' rx='4' fill='#5a3b1a' stroke='#2d1e0e'/><rect x='44' y='8' width='10' height='48' fill='#4a2f14' stroke='#2d1e0e'/><circle cx='36' cy='24' r='8' fill='none' stroke='#e6d7a7' stroke-width='2'/><path d='M33 22l6 4-6 4' stroke='#e6d7a7' fill='none' stroke-width='2'/></svg>"
+  },
+  "den_den": {
+    "name": "Den Den Messenger",
+    "desc": "Un caracol telefónico pixelado.",
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64' shape-rendering='crispEdges'><rect x='8' y='28' width='40' height='20' fill='#9ad0b0' stroke='#2e5d4d'/><circle cx='40' cy='28' r='10' fill='#f7f0d0' stroke='#6b5b3b'/><circle cx='44' cy='26' r='2' fill='#2e2e2e'/><rect x='12' y='36' width='18' height='6' fill='#cbe9d7' stroke='#2e5d4d'/></svg>"
+  },
+  "sabaody": {
+    "name": "Mercado de Sabaody",
+    "desc": "Casa de Subastas en pixel art.",
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64' shape-rendering='crispEdges'><rect x='12' y='28' width='40' height='20' fill='#8d6e63' stroke='#4e342e'/><rect x='16' y='24' width='32' height='6' fill='#a1887f' stroke='#4e342e'/><rect x='18' y='34' width='8' height='8' fill='#d7ccc8' stroke='#4e342e'/><rect x='38' y='34' width='8' height='8' fill='#d7ccc8' stroke='#4e342e'/></svg>"
+  },
+  "arcade_jaya": {
+    "name": "Arcade de Jaya",
+    "desc": "Máquina arcade retro.",
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64' shape-rendering='crispEdges'><rect x='14' y='10' width='36' height='44' fill='#1e293b' stroke='#0f172a'/><rect x='18' y='14' width='28' height='12' fill='#0ea5e9'/><rect x='18' y='28' width='28' height='8' fill='#111827'/><circle cx='24' cy='40' r='3' fill='#ef4444'/><circle cx='32' cy='40' r='3' fill='#22c55e'/><rect x='28' y='36' width='8' height='2' fill='#93c5fd'/></svg>"
+  },
+  "tunova": {
+    "name": "Isla del Sonido (TUNOVA)",
+    "desc": "Walkman pirata/cassette.",
+    "svg": "<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'><rect x='10' y='20' width='44' height='24' rx='3' fill='#1f2937' stroke='#111827'/><rect x='16' y='24' width='32' height='16' fill='#111827' stroke='#374151'/><circle cx='26' cy='32' r='6' fill='#4b5563'/><circle cx='38' cy='32' r='6' fill='#4b5563'/><rect x='22' y='22' width='20' height='2' fill='#22d3ee'/></svg>"
+  }
+}

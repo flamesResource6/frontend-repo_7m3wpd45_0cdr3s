@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0.2"/>
+    </filter>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="75%">
+      <stop offset="60%" stop-color="#f5e6c8"/>
+      <stop offset="100%" stop-color="#d8c19a"/>
+    </radialGradient>
+  </defs>
+  <rect width="128" height="128" fill="url(#vignette)"/>
+  <rect width="128" height="128" filter="url(#noise)" opacity="0.15"/>
+  <g opacity="0.25" stroke="#b89c6b" stroke-width="0.7">
+    <path d="M0 10h128M0 20h128M0 30h128M0 40h128M0 50h128M0 60h128M0 70h128M0 80h128M0 90h128M0 100h128M0 110h128M0 120h128"/>
+  </g>
+</svg>
