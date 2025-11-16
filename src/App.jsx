@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Github, Globe } from 'lucide-react'
 import Hero3D from './components/Hero3D'
@@ -7,56 +7,94 @@ import Window from './components/Window'
 
 function App() {
   const [openApp, setOpenApp] = useState(null)
+  const [theme, setTheme] = useState(() => localStorage.getItem('nakama-theme') || 'anti')
+  const [coins, setCoins] = useState(0)
+  const backend = useMemo(() => import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000', [])
+
+  useEffect(() => {
+    if (theme === 'sakura') {
+      document.documentElement.setAttribute('data-theme', 'sakura')
+    } else {
+      document.documentElement.removeAttribute('data-theme')
+    }
+    localStorage.setItem('nakama-theme', theme)
+  }, [theme])
+
+  const toggleTheme = () => setTheme(t => (t === 'sakura' ? 'anti' : 'sakura'))
+
+  const rewardTick = async () => {
+    try {
+      const res = await fetch(`${backend}/api/reward/tick`, { method: 'POST' })
+      const data = await res.json()
+      if (data && typeof data.balance === 'number') {
+        setCoins(data.balance)
+        // simple confetti-like pulse using CSS class
+        const el = document.getElementById('belly-counter')
+        if (el) {
+          el.classList.add('haki-pulse')
+          setTimeout(() => el.classList.remove('haki-pulse'), 800)
+        }
+      }
+    } catch (e) {
+      console.error('reward tick failed', e)
+    }
+  }
 
   return (
-    <div className="min-h-screen w-full bg-[#0b0b12] text-white">
-      {/* Hero con Spline */}
-      <Hero3D />
+    <div className="min-h-screen w/full bg-[#0b0b12] text-white">
+      {/* CRT scanline wrapper */}
+      <div className="scanline">
+        {/* Hero con Spline */}
+        <Hero3D />
 
-      {/* Escritorio */}
-      <section className="relative z-10 mx-auto -mt-24 max-w-6xl rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur-xl">
-        <div className="mb-6 flex items-center justify-between">
-          <div>
-            <h2 className="text-xl font-semibold text-white/90">Neon Desktop</h2>
-            <p className="text-sm text-white/60">Un mini-OS con estética anime/cyberpunk</p>
+        {/* Escritorio */}
+        <section className="relative z-10 mx-auto -mt-24 max-w-6xl rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur-xl">
+          <div className="mb-6 flex items-center justify-between">
+            <div>
+              <h2 className="text-xl font-semibold text-white/90">Neon Desktop</h2>
+              <p className="text-sm text-white/60">Un mini-OS con estética anime/cyberpunk</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <div id="belly-counter" className="rounded-md border border-white/10 bg-white/10 px-2 py-1 text-sm text-fuchsia-200">
+                ฿ {coins}
+              </div>
+              <a href="https://github.com" target="_blank" className="rounded-lg bg-white/10 p-2 ring-1 ring-white/10 transition hover:bg-white/20">
+                <Github className="h-5 w-5" />
+              </a>
+              <a href="/test" className="rounded-lg bg-white/10 px-3 py-2 text-sm ring-1 ring-white/10 transition hover:bg-white/20">
+                Diagnóstico
+              </a>
+            </div>
           </div>
-          <div className="flex gap-3">
-            <a href="https://github.com" target="_blank" className="rounded-lg bg-white/10 p-2 ring-1 ring-white/10 transition hover:bg-white/20">
-              <Github className="h-5 w-5" />
-            </a>
-            <a href="/test" className="rounded-lg bg-white/10 px-3 py-2 text-sm ring-1 ring-white/10 transition hover:bg-white/20">
-              Diagnóstico
-            </a>
-          </div>
-        </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            { id: 'anime', title: 'Centro Otaku', desc: 'Noticias, rankings y wallpapers de tus series favoritas.' },
-            { id: 'music', title: 'Lo-Fi Radio', desc: 'Beats para codear como un prota de shonen.' },
-            { id: 'terminal', title: 'Terminal Neko', desc: 'Comandos kawaii con efectos neon.' },
-          ].map(card => (
-            <button
-              key={card.id}
-              onClick={() => setOpenApp(card.id)}
-              className="group rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5 p-5 text-left transition hover:bg-white/10"
-            >
-              <div className="mb-2 flex items-center gap-2 text-xs text-fuchsia-300">
-                <span className="h-1.5 w-1.5 rounded-full bg-fuchsia-400" />
-                App
-              </div>
-              <p className="text-lg font-semibold text-white/90">{card.title}</p>
-              <p className="mt-1 text-sm text-white/70">{card.desc}</p>
-              <div className="mt-4 opacity-0 transition group-hover:opacity-100">
-                <span className="inline-flex items-center gap-1 text-fuchsia-300">Abrir <Globe className="h-4 w-4" /></span>
-              </div>
-            </button>
-          ))}
-        </div>
-      </section>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { id: 'anime', title: 'Centro Otaku', desc: 'Noticias, rankings y wallpapers de tus series favoritas.' },
+              { id: 'music', title: 'Lo-Fi Radio', desc: 'Beats para codear como un prota de shonen.' },
+              { id: 'terminal', title: 'Terminal Neko', desc: 'Comandos kawaii con efectos neon.' },
+            ].map(card => (
+              <button
+                key={card.id}
+                onClick={() => setOpenApp(card.id)}
+                className="group rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5 p-5 text-left transition hover:bg-white/10"
+              >
+                <div className="mb-2 flex items-center gap-2 text-xs text-fuchsia-300">
+                  <span className="h-1.5 w-1.5 rounded-full bg-fuchsia-400" />
+                  App
+                </div>
+                <p className="text-lg font-semibold text-white/90">{card.title}</p>
+                <p className="mt-1 text-sm text-white/70">{card.desc}</p>
+                <div className="mt-4 opacity-0 transition group-hover:opacity-100">
+                  <span className="inline-flex items-center gap-1 text-fuchsia-300">Abrir <Globe className="h-4 w-4" /></span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </section>
+      </div>
 
       {/* Dock */}
-      <Dock onOpen={setOpenApp} />
+      <Dock onOpen={setOpenApp} onToggleTheme={toggleTheme} onReward={rewardTick} />
 
       {/* Ventanas */}
       <div className="pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4">

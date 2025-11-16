@@ -16,6 +16,14 @@
     --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
+  /* Sakura theme override */
+  html[data-theme='sakura'] {
+    --beige-nostalgico: #FFECEB; /* sakura paper */
+    --gris-consola: #B8A0A6;     /* sakura shadow */
+    --negro-crt: #0B0A0C;        /* deeper ink */
+    --laton-poneglyph: #FF72B6;  /* sakura neon */
+  }
+
   html { font-family: var(--font-sans); font-feature-settings: "rlig" 1, "calt" 1; }
   body { @apply antialiased bg-[#0b0b12] text-white; cursor: url('/cursors/pixel-default.svg') 0 0, auto; }
 }
@@ -56,6 +64,19 @@
   100% { filter: drop-shadow(0 0 0px #000); }
 }
 .haki-pulse { animation: haki-conqueror 1.2s infinite; }
+
+@keyframes glow-scanline {
+  0% { opacity: .7; }
+  50% { opacity: 1; }
+  100% { opacity: .7; }
+}
+.scanline { position: relative; }
+.scanline::after {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(rgba(255,255,255,0.02) 50%, rgba(0,0,0,0.02) 50%);
+  background-size: 100% 3px; mix-blend-mode: overlay; animation: glow-scanline 4s infinite; border-radius: inherit;
+}
 
 /* Utility from previous layer for transitions */
 @layer utilities {
